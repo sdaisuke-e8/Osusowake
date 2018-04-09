@@ -1,5 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "toastr";
+
+body {
+    color: #222;
+    background-color: #f5f8fa;
+}
 
 .jumbotron {
   padding-top: 0px;
@@ -30,23 +36,105 @@
   background: transparent;
   border-color: transparent;
   z-index: 10;
+
+  .navbar-brand {
+    color: white;
+  }
+
+  .navbar-nav > li > a {
+    color: white;
+    font-size: 13px;
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: #fff;
+  }
+
 }
 
-.navbar-default .navbar-nav > li > a {
-  color: white;
-  font-size: 13px;
+//navbar-deviseのcss
+.navbar-devise {
+  background-color: #3ecdc6;
+  border-color: #3ecdc6;
+  z-index: 10;
+
+  .navbar-brand {
+    color: white;
+  }
+
+  .navbar-nav > li > a {
+    color: white;
+    font-size: 13px;
+  }
+
+  .navbar-nav li :hover {
+    background-color: #2caca5;
+  }
 }
 
-.navbar-default .navbar-brand {
-  color: white;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
-}
-
-.container {
-  width: 1170px;
-  padding: 0 15px;
+/* フォーム================================ */
+.form {
+  max-width: 600px;
   margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 2px 6px #c1ced7;
+}
+
+.form-heading {
+  font-weight: 300;
+  margin: 60px 0 20px;
+  font-size: 48px;
+  color: #bcc8d4;
+  text-align: center;
+}
+
+.form-body {
+  padding: 30px;
+}
+
+.form-error {
+  color: #ff4d75;
+}
+
+.form input {
+  width: 100%;
+  border: 1px solid #d8dadf;
+  padding: 10px;
+  color: #57575f;
+  font-size: 16px;
+  letter-spacing: 2px;
+  border-radius: 2px;
+}
+
+.form textarea {
+  width: 100%;
+  min-height: 110px;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.form input[type="submit"] {
+  background-color: #3ecdc6;
+  color: white;
+  cursor: pointer;
+  font-weight: 300;
+  width: 120px;
+  border-radius: 2px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  float: right;
+}
+
+.form-links-registration {
+  margin-top: 35px;
+}
+
+.form-links-login {
+  margin-top: 25px;
+}
+
+.form-body:after {
+  content: '';
+  display: table;
+  clear: both;
 }
