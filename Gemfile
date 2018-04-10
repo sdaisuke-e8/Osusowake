@@ -17,6 +17,8 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'devise'
 gem 'toastr-rails'
+gem 'omniauth-facebook'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
