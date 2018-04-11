@@ -138,3 +138,29 @@ body {
   display: table;
   clear: both;
 }
+
+// プロフィール画像
+.profile-0 {
+    width: 28px;
+    height: 28px;
+}
+
+.profile-1 {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-2{
+    width: 100px;
+    height: 100px;
+}
+
+.profile-full {
+  width: 30%;
+}
+
+@media (min-width: 992px){
+.profile-full {
+        width: 100%;
+    }
+}
