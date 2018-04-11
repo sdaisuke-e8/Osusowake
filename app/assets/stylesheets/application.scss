@@ -1,0 +1,52 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.jumbotron {
+  padding-top: 0px;
+  // 背景画像を暗くする
+  background: url(apples.jpg);
+	background-size: cover;
+  // 背景画像の位置を決める
+  height: 420px;
+  color: white;
+  text-align: center;
+
+  .container .row{
+      margin-top: 100px;
+      color: #fff;
+  }
+
+  h1 {
+    font-size: 50px;
+    letter-spacing: 5px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
+
+.navbar-default {
+  background: transparent;
+  border-color: transparent;
+  z-index: 10;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  font-size: 13px;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+.container {
+  width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
