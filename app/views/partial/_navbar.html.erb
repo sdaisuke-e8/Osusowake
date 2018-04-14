@@ -28,7 +28,7 @@
               <!-- 認証ログインをしている時 -->
               <%= image_tag current_user.image, class:"image-circle profile-0" %>
             <% end %>
-            <%= current_user.name %>
+            <%= current_user.name.split("@")[0] %>
             <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "プロフィール", user_path(current_user)%></li>

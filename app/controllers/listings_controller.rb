@@ -1,12 +1,12 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_listing, only: [:show, :update]
 
   def index
     @listings = Listing.all
   end
 
   def show
-    @listing = Listing.includes(:user).find(params[:id])
   end
 
   def new
@@ -28,11 +28,7 @@ class ListingsController < ApplicationController
   end
 
   def update
-    @listing = Listing.find_by(id: params[:id])
-    @listing.listing_image = params[:listing][:listing_image]
-    @listing.listing_title = params[:listing][:listing_title]
-    @listing.listing_content = params[:listing][:listing_content]
-    if @listing.save
+    if @listing.update(listing_params)
       redirect_to listings_path, notice: 'リスティングを編集しました'
     else
       render :edit
@@ -47,6 +43,10 @@ class ListingsController < ApplicationController
 
   private
   def listing_params
-    params.require(:listing).permit(:listing_image, :listing_title, :listing_content)
+    params.require(:listing).permit(:listing_image, :listing_title, :listing_content, :address, :pickup_times)
+  end
+
+  def set_listing
+    @listing = Listing.find(params[:id])
   end
 end

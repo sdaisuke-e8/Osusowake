@@ -1,34 +1,115 @@
 <%= render "partial/navbar" %>
 
-<div class="main posts-index">
-  <div class="container">
-    <div class="contents">
-      <div class="posts-index-item">
-        <!-- ユーザー情報 -->
-        <div class="post-user-image">
-          <img src="<%= "/user_images/#{@listing.user.image}" %>">
-        </div>
-        <div class="post-user-name">
-          <%= link_to(@listing.user.name, "/users/#{@listing.user.id}") %>
-        </div>
 
-        <!-- 投稿画像 -->
-        <%= image_tag @listing.listing_image.url%>
-
-        <!-- 投稿画像の概要 -->
-        <p class="post-text">
-          <%= @listing.listing_content %>
-        </p>
-
-        <!-- 投稿データの編集・削除 -->
-        <% if @listing.user_id == current_user.id %>
-          <div class="post-menus">
-            <%= link_to("編集", "/listings/#{@listing.id}/edit") %>
-            <%= link_to("削除", "/listings/#{@listing.id}", {method: "delete"}) %>
-          </div>
-        <% end %>
-
-      </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" role="listbox">
+    <div class="carousel-item" style="background-image">
+      <%= image_tag @listing.listing_image.url%>
     </div>
   </div>
 </div>
+
+<!-- Page Content -->
+<section class="py-5">
+  <div class="container">
+    <div class="listing-show-item">
+      <!-- ユーザー情報 -->
+      <div class="listing-show-user-image">
+        <img src="<%= "/user_images/#{@listing.user.image}" %>">
+      </div>
+      <div class="listing-show-user-name">
+        <%= link_to(@listing.user.name, "/users/#{@listing.user.id}") %>
+      </div>
+    </div>
+    <div class="listing-show-text">
+      <h1>
+        <%= @listing.listing_title %>
+      </h1>
+      <p>
+        <%= @listing.listing_content %>
+      </p>
+    </div>
+
+    <!-- レビュー    -->
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="row-space-3">レビュー</h3>
+            <p>テストテストテストテストテストテストテストテストテストテスト</p>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+    <!-- google map    -->
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="row-space-3">受け渡し場所</h3>
+            <div id="map"></div>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+    <style>
+        #map{
+            width: 100%;
+            height: 350px;
+        }
+
+    </style>
+
+    <!-- 受け渡し時間 -->
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="row-space-3">受け渡し時間</h3>
+            <p>
+              <%= @listing.pickup_times %>
+            </p>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+    <!-- 投稿データの編集・削除 -->
+    <% if @listing.user_id == current_user.id %>
+      <div class="listing-menus">
+        <%= link_to("編集", "/listings/#{@listing.id}/edit") %>
+        <%= link_to("削除", "/listings/#{@listing.id}", {method: "delete"}) %>
+      </div>
+    <% end %>
+
+  </div>
+</section>
+
+<script>
+function initMap() {
+
+  // Create the map.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: {lat: <%=@listing.latitude %>, lng: <%=@listing.longitude %>},
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+
+  // Add the circle for this city to the map.
+  var cityCircle = new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map: map,
+    center: {lat: <%=@listing.latitude %>, lng: <%=@listing.longitude %>},
+    radius: 500
+  });
+
+}
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQpt9HosBNr4ToKp5diw2SNymRvH0V8q8&signed_in=true&callback=initMap"></script>
