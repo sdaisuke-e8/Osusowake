@@ -1,0 +1,34 @@
+<%= render "partial/navbar" %>
+
+<div class="main posts-index">
+  <div class="container">
+    <div class="contents">
+      <div class="posts-index-item">
+        <!-- ユーザー情報 -->
+        <div class="post-user-image">
+          <img src="<%= "/user_images/#{@listing.user.image}" %>">
+        </div>
+        <div class="post-user-name">
+          <%= link_to(@listing.user.name, "/users/#{@listing.user.id}") %>
+        </div>
+
+        <!-- 投稿画像 -->
+        <%= image_tag @listing.listing_image.url%>
+
+        <!-- 投稿画像の概要 -->
+        <p class="post-text">
+          <%= @listing.listing_content %>
+        </p>
+
+        <!-- 投稿データの編集・削除 -->
+        <% if @listing.user_id == current_user.id %>
+          <div class="post-menus">
+            <%= link_to("編集", "/listings/#{@listing.id}/edit") %>
+            <%= link_to("削除", "/listings/#{@listing.id}", {method: "delete"}) %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

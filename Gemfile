@@ -19,6 +19,8 @@ gem 'devise'
 gem 'toastr-rails'
 gem 'omniauth-facebook'
 gem 'thin'
+gem 'carrierwave'
+gem 'figaro', '~> 1.1.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

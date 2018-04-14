@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  listing_title：string,: MyString
+  listing_content：text,: MyString
+  listing_image：string,: MyString
+  address：string,: MyString
+  pickup_times：string,: MyString
+  user：references: MyString
+
+two:
+  listing_title：string,: MyString
+  listing_content：text,: MyString
+  listing_image：string,: MyString
+  address：string,: MyString
+  pickup_times：string,: MyString
+  user：references: MyString
