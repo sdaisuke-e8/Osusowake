@@ -1,12 +1,13 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_listing, only: [:show, :update]
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
     @listings = Listing.all
   end
 
   def show
+    @reservation = Reservation.find_by(listing_id: params[:id])
   end
 
   def new
@@ -24,7 +25,6 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find_by(id: params[:id])
   end
 
   def update
@@ -36,7 +36,6 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @listing = Listing.find_by(id: params[:id])
     @listing.destroy
     redirect_to listings_path
   end

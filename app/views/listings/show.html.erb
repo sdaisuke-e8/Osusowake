@@ -30,18 +30,6 @@
       </p>
     </div>
 
-    <!-- レビュー    -->
-    <div class="row">
-        <div class="col-md-9">
-            <h3 class="row-space-3">レビュー</h3>
-            <p>テストテストテストテストテストテストテストテストテストテスト</p>
-        </div>
-
-        <div class="col-md-3">
-
-        </div>
-    </div>
-
     <!-- google map    -->
     <div class="row">
         <div class="col-md-9">
@@ -80,8 +68,18 @@
         </div>
       <% else %>
         <!-- リスティングの予約 -->
-        <%= link_to listing_reservations_path(@listing), {method: "post"} do %>
-          <button type="button" class="btn btn-danger btn-lg">予約する</button>
+        <% if !@reservation.nil? %>
+          <% if @reservation.user_id == current_user.id %>
+            <%= link_to listing_reservation_path(@listing), {method: "delete"} do %>
+              <button type="button" class="btn btn-danger btn-lg">キャンセルする</button>
+            <% end %>
+          <% else %>
+            <button type="button" class="btn btn-danger btn-lg" disabled>予約済みです</button>
+          <% end %>
+        <% else %>
+          <%= link_to listing_reservations_path(@listing), {method: "post"} do %>
+            <button type="button" class="btn btn-danger btn-lg">予約する</button>
+          <% end %>
         <% end %>
       <% end %>
     </div>

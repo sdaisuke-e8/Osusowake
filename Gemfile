@@ -22,6 +22,10 @@ gem 'thin'
 gem 'carrierwave'
 gem 'figaro', '~> 1.1.0'
 gem 'geocoder'
+gem 'pry-rails'
+gem 'pry-doc'
+gem 'pry-byebug'
+gem 'pry-stack_explorer'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

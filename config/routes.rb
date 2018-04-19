@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :listings
   resources :listings do
-    resources :reservations, only: [:create]
+    resources :reservations, only: [:create, :destroy]
   end
+
+  get 'reservations/index'
 
 end
