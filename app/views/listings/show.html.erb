@@ -30,6 +30,23 @@
       </p>
     </div>
 
+    <!-- レビュー    -->
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="row-space-3">レビュー</h3>
+            <div id="average_star_rate"></div>
+            <% if @review.nil? %>
+              <%= render 'reviews/form' %>
+            <% else %>
+              <%= @review.description %>
+            <% end %>
+        </div>
+
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
     <!-- google map    -->
     <div class="row">
         <div class="col-md-9">
@@ -112,5 +129,7 @@ function initMap() {
 }
 
 </script>
+
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQpt9HosBNr4ToKp5diw2SNymRvH0V8q8&signed_in=true&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQpt9HosBNr4ToKp5diw2SNymRvH0V8q8&signed_in=true&callback=initMap">
+</script>

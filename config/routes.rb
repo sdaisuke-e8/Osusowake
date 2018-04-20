@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :listings do
     resources :reservations, only: [:create, :destroy]
   end
-
   get 'reservations/index'
+
+  resources :listings do
+    resources :reviews, only: [:create, :destroy]
+  end
 
 end
