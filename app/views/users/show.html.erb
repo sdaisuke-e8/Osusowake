@@ -6,9 +6,19 @@
       <img src="<%= "/user_images/#{@user.image}" %>">
       <h2><%= @user.name %></h2>
       <p><%= @user.profile %></p>
+
+
+
       <% if @user.id == current_user.id %>
-        <%= link_to("編集", edit_user_registration_path) %>
-        <%= link_to("削除", user_registration_path, {method: "delete"}) %>
+        <div class="user-edit">
+          <%= link_to("編集", edit_user_registration_path) %>
+          <%= link_to("削除", user_registration_path, {method: "delete"}) %>
+        </div>
+      <% else %>
+        <!-- send messageボタン -->
+        <div class="user-message">
+          <%= link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: 'post', class: "btn btn-danger btn-full" %>
+        </div>
       <% end %>
     </div>
 

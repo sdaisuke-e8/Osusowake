@@ -26,6 +26,8 @@ gem 'pry-rails'
 gem 'pry-doc'
 gem 'pry-byebug'
 gem 'pry-stack_explorer'
+gem "private_pub"
+gem "thin"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -15,4 +15,5 @@
 //= require toastr
 //= require rails-ujs
 //= require turbolinks
+//= require private_pub
 //= require_tree .
