@@ -30,23 +30,6 @@
       </p>
     </div>
 
-    <!-- レビュー    -->
-    <div class="row">
-        <div class="col-md-9">
-            <h3 class="row-space-3">レビュー</h3>
-            <div id="average_star_rate"></div>
-            <% if @review.nil? %>
-              <%= render 'reviews/form' %>
-            <% else %>
-              <%= @review.description %>
-            <% end %>
-        </div>
-
-        <div class="col-md-3">
-
-        </div>
-    </div>
-
     <!-- google map    -->
     <div class="row">
         <div class="col-md-9">
@@ -78,6 +61,13 @@
 
     <div class="listing-button">
       <% if @listing.user_id == current_user.id %>
+        <% if !@reservation.nil? %>
+          <%= link_to listings_path do %>
+            <button type="button" class="btn btn-danger btn-lg">おすそわけしました</button>
+          <% end %>
+        <% else %>
+          <button type="button" class="btn btn-danger btn-lg" disabled>予約はありません</button>
+        <% end %>
         <!-- リスティングの編集・削除 -->
         <div class="listing-user-button">
           <%= link_to "編集", "/listings/#{@listing.id}/edit" %>
@@ -87,8 +77,8 @@
         <!-- リスティングの予約 -->
         <% if !@reservation.nil? %>
           <% if @reservation.user_id == current_user.id %>
-            <%= link_to listing_reservation_path(@listing), {method: "delete"} do %>
-              <button type="button" class="btn btn-danger btn-lg">おすそわけしました</button>
+            <%= link_to new_listing_review_path(@listing) do %>
+              <button type="button" class="btn btn-danger btn-lg">受け取りました</button>
             <% end %>
             <div class="listing-cancel">
               <%= link_to "キャンセルする", listing_reservation_path(@listing), {method: "delete"} %>

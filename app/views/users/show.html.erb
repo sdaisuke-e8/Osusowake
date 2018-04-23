@@ -7,7 +7,7 @@
       <h2><%= @user.name %></h2>
       <p><%= @user.profile %></p>
 
-
+      <div id="average_star_rate"></div>
 
       <% if @user.id == current_user.id %>
         <div class="user-edit">
@@ -46,3 +46,11 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#average_star_rate').raty({
+    path: '/assets',
+    readOnly: true,
+    score: <%= @user.average_star_rate %>
+  });
+</script>

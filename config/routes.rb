@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'reservations/index'
 
   resources :listings do
-    resources :reviews, only: [:create, :destroy]
+    resources :reviews, only: [:new, :create, :destroy]
   end
 
   resources :conversations, only: [:index, :create] do

@@ -30,4 +30,8 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  def average_star_rate
+    reviews.count == 0 ? 0 : reviews.average(:rate).round(1)
+  end
 end

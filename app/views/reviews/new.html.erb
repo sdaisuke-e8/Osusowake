@@ -1,0 +1,40 @@
+<%= render "partial/navbar" %>
+
+<div class="main posts-new">
+  <div class="container">
+    <div class="contents">
+      <h1 class="form-heading">評価する</h1>
+      <div class="form">
+        <div class="form-body">
+          <% @review.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+
+          <%= form_for(@review, url: listing_reviews_path(@listing), html: {method: "post"}) do |f| %>
+
+            <div id="rate_stars"></div>
+
+            <div class="form-group">
+              <%= f.text_area :description, class: 'form-control', required: 'true' %>
+            </div>
+
+            <%= f.hidden_field :listing_id, value: @listing.id %>
+
+            <%= f.submit "送信" %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#rate_stars").raty({
+    path: '/assets',
+    scoreName: 'review[rate]',
+    score: 1
+  });
+</script>
