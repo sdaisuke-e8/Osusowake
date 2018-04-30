@@ -1,0 +1,11 @@
+<% @arrlistings.each do |listing| %>
+  //markerはこの関数の中で同じ変数
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(<%= listing.latitude %>, <%= listing.longitude %>),
+      map: map
+    });
+
+  // マーカー配列にマーカを保存
+    markers.push(marker);
+
+<% end %>

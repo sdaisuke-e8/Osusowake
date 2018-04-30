@@ -1,6 +1,5 @@
 <%= render "partial/navbar" %>
 
-
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item" style="background-image">
@@ -62,6 +61,10 @@
     <div class="listing-button">
       <% if !@complete.nil? %>
         <button type="button" class="btn btn-danger btn-lg" disabled>この取引は終了しています</button>
+        <div class="listing-user-button">
+          <%= link_to "編集", "/listings/#{@listing.id}/edit" %>
+          <%= link_to "削除", "/listings/#{@listing.id}", {method: "delete"} %>
+        </div>
       <% else %>
         <% if @listing.user_id == current_user.id %>
           <!-- リスティングの編集・削除 -->
@@ -114,7 +117,7 @@ function initMap() {
     map: map,
     center: {lat: <%=@listing.latitude %>, lng: <%=@listing.longitude %>},
     radius: 500
-  });
+  })
 
 }
 

@@ -15,6 +15,13 @@
         <% end %>
     </div>
 
+    <!-- Location Search Form -->
+    <div class="navbar-form navbar-left form-group row-space-2">
+      <%= form_tag search_path, method: :get do %>
+        <%= text_field_tag :search, params[:search], placeholder: "場所の検索", class: "form-control",id:"pac-input" %>
+      <% end %>
+    </div>
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -49,3 +56,31 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<script>
+function initMap() {
+  var input = /** @type {!HTMLInputElement} */(
+  document.getElementById('pac-input'));
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+
+  autocomplete.addListener('place_changed', function() {
+
+    var place = autocomplete.getPlace();
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+
+    document.getElementById('lat').value = lat ;
+    document.getElementById('lng').value = lng ;
+
+    if (!place.geometry) {
+      window.alert("Autocomplete's returned place contains no geometry");
+      return;
+    }
+
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQpt9HosBNr4ToKp5diw2SNymRvH0V8q8&signed_in=true&libraries=places&callback=initMap"
+    async defer></script>

@@ -1,0 +1,30 @@
+<% if @listings  %>
+  <div class="row filter-section">
+    <% @listings.each do |listing| %>
+      <div class="col-md-6">
+        <%= link_to listing do %>
+          <div class="panel panel-default">
+            <div class="listing-box">
+              <div class="listing-user-data">
+                <div class="listing-user-image listing-user-data-content">
+                  <img src="<%= "/user_images/#{listing.user.image}" %>">
+                </div>
+                <div class="listing-user-name listing-user-data-content">
+                  <%= link_to(listing.user.name, "/users/#{listing.user.id}") %>
+                </div>
+              </div>
+              <div class="listing-data">
+                <div class="listing-wrap">
+                  <%= link_to image_tag(listing.listing_image.url, {:border => '0'}), "/listings/#{listing.id}" %>
+                </div>
+                <div class="listing-title">
+                  <%= listing.listing_title %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
