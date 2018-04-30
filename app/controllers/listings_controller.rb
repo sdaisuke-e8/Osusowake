@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
 
   def show
     @reservation = Reservation.find_by(listing_id: params[:id])
+    @complete = Complete.find_by(listing_id: params[:id])
 
     @review = Review.find_by(listing_id: params[:id])
     # binding.pry
