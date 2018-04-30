@@ -30,18 +30,6 @@
       </p>
     </div>
 
-    <!-- レビュー    -->
-    <div class="row">
-        <div class="col-md-9">
-            <h3 class="row-space-3">レビュー</h3>
-            <p>テストテストテストテストテストテストテストテストテストテスト</p>
-        </div>
-
-        <div class="col-md-3">
-
-        </div>
-    </div>
-
     <!-- google map    -->
     <div class="row">
         <div class="col-md-9">
@@ -63,25 +51,48 @@
 
     <!-- 受け渡し時間 -->
     <div class="row">
-        <div class="col-md-9">
-            <h3 class="row-space-3">受け渡し時間</h3>
-            <p>
-              <%= @listing.pickup_times %>
-            </p>
-        </div>
-
-        <div class="col-md-3">
-
-        </div>
+      <div class="col-md-9">
+        <h3 class="row-space-3">受け渡し時間</h3>
+        <p>
+          <%= @listing.pickup_times %>
+        </p>
+      </div>
     </div>
 
-    <!-- 投稿データの編集・削除 -->
-    <% if @listing.user_id == current_user.id %>
-      <div class="listing-menus">
-        <%= link_to("編集", "/listings/#{@listing.id}/edit") %>
-        <%= link_to("削除", "/listings/#{@listing.id}", {method: "delete"}) %>
-      </div>
-    <% end %>
+    <div class="listing-button">
+      <% if @listing.user_id == current_user.id %>
+        <% if !@reservation.nil? %>
+          <%= link_to listings_path do %>
+            <button type="button" class="btn btn-danger btn-lg">おすそわけしました</button>
+          <% end %>
+        <% else %>
+          <button type="button" class="btn btn-danger btn-lg" disabled>予約はありません</button>
+        <% end %>
+        <!-- リスティングの編集・削除 -->
+        <div class="listing-user-button">
+          <%= link_to "編集", "/listings/#{@listing.id}/edit" %>
+          <%= link_to "削除", "/listings/#{@listing.id}", {method: "delete"} %>
+        </div>
+      <% else %>
+        <!-- リスティングの予約 -->
+        <% if !@reservation.nil? %>
+          <% if @reservation.user_id == current_user.id %>
+            <%= link_to new_listing_review_path(@listing) do %>
+              <button type="button" class="btn btn-danger btn-lg">受け取りました</button>
+            <% end %>
+            <div class="listing-cancel">
+              <%= link_to "キャンセルする", listing_reservation_path(@listing), {method: "delete"} %>
+            </div>
+          <% else %>
+            <button type="button" class="btn btn-danger btn-lg" disabled>予約済みです</button>
+          <% end %>
+        <% else %>
+          <%= link_to listing_reservations_path(@listing), {method: "post"} do %>
+            <button type="button" class="btn btn-danger btn-lg">予約する</button>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
 
   </div>
 </section>
@@ -111,5 +122,7 @@ function initMap() {
 }
 
 </script>
+
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQpt9HosBNr4ToKp5diw2SNymRvH0V8q8&signed_in=true&callback=initMap"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQpt9HosBNr4ToKp5diw2SNymRvH0V8q8&signed_in=true&callback=initMap">
+</script>

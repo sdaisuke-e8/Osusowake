@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_many :listings
+  has_many :reservations
+  has_many :reviews
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -27,5 +29,9 @@ class User < ApplicationRecord
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  def average_star_rate
+    reviews.count == 0 ? 0 : reviews.average(:rate).round(1)
   end
 end
