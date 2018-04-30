@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180430120121) do
+ActiveRecord::Schema.define(version: 20180430213639) do
 
   create_table "completes", force: :cascade do |t|
     t.integer "user_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180430120121) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.boolean "complete", default: false, null: false
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
