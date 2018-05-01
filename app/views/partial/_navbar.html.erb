@@ -10,16 +10,17 @@
       </button>
       <% if user_signed_in? %>
           <%= link_to "Osusowake", listings_path, class: "navbar-brand" %>
+
+          <!-- Location Search Form -->
+          <div class="navbar-form navbar-left form-group row-space-2">
+            <%= form_tag search_path, method: :get do %>
+              <%= text_field_tag :search, params[:search], placeholder: "場所の検索", class: "form-control",id:"pac-input" %>
+            <% end %>
+          </div>
+
         <% else %>
           <%= link_to "Osusowake", root_path, class: "navbar-brand" %>
         <% end %>
-    </div>
-
-    <!-- Location Search Form -->
-    <div class="navbar-form navbar-left form-group row-space-2">
-      <%= form_tag search_path, method: :get do %>
-        <%= text_field_tag :search, params[:search], placeholder: "場所の検索", class: "form-control",id:"pac-input" %>
-      <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
