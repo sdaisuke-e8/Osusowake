@@ -38,7 +38,6 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @listing.destroy
     redirect_to listings_path
   end
