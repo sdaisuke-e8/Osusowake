@@ -1,6 +1,5 @@
 <%= render "partial/navbar" %>
 
-
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item" style="background-image">
@@ -60,7 +59,7 @@
     </div>
 
     <div class="listing-button">
-      <% if !@complete.nil? %>
+      <% if @listing.complete == true %>
         <button type="button" class="btn btn-danger btn-lg" disabled>この取引は終了しています</button>
       <% else %>
         <% if @listing.user_id == current_user.id %>
@@ -114,7 +113,7 @@ function initMap() {
     map: map,
     center: {lat: <%=@listing.latitude %>, lng: <%=@listing.longitude %>},
     radius: 500
-  });
+  })
 
 }
 

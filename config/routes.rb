@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get '/search' => 'pages#search'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -20,5 +21,7 @@ Rails.application.routes.draw do
   resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :create]
   end
+
+  get '/ajaxsearch' => 'pages#ajaxsearch'
 
 end

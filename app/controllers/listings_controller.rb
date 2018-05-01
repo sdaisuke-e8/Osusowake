@@ -3,14 +3,13 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
   def index
-    @listings = Listing.all
+    @listings = Listing.where(complete: false)
   end
 
   def show
     @reservation = Reservation.find_by(listing_id: params[:id])
 
     @review = Review.find_by(listing_id: params[:id])
-    # binding.pry
   end
 
   def new
@@ -39,6 +38,7 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     @listing.destroy
     redirect_to listings_path
   end
