@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420035938) do
+ActiveRecord::Schema.define(version: 20180430213639) do
+
+  create_table "completes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_completes_on_listing_id"
+    t.index ["user_id"], name: "index_completes_on_user_id"
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer "sender_id"
@@ -30,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180420035938) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.boolean "complete", default: false, null: false
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
