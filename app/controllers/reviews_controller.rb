@@ -14,8 +14,8 @@ class ReviewsController < ApplicationController
     @reservation = Reservation.find_by(listing_id: @listing.id)
     @reservation.destroy
 
-    @complete = Complete.create(user_id: current_user.id, listing_id: @listing.id)
-    @complete.save
+    @listing.complete = true
+    @listing.save
 
     redirect_to listings_path
   end

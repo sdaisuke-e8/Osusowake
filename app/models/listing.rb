@@ -2,7 +2,6 @@ class Listing < ApplicationRecord
   belongs_to :user
   has_one :reservation
   has_one :review
-  has_one :complete
 
   mount_uploader :listing_image, ImageUploader
 

@@ -59,12 +59,8 @@
     </div>
 
     <div class="listing-button">
-      <% if !@complete.nil? %>
+      <% if @listing.complete == true %>
         <button type="button" class="btn btn-danger btn-lg" disabled>この取引は終了しています</button>
-        <div class="listing-user-button">
-          <%= link_to "編集", "/listings/#{@listing.id}/edit" %>
-          <%= link_to "削除", "/listings/#{@listing.id}", {method: "delete"} %>
-        </div>
       <% else %>
         <% if @listing.user_id == current_user.id %>
           <!-- リスティングの編集・削除 -->

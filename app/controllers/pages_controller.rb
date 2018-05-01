@@ -16,9 +16,9 @@ class PagesController < ApplicationController
         @longitude = geolocation[1]
       end
 
-      @listings = Listing.near(geolocation, 1, order: 'distance')
+      @listings = Listing.where(complete: false).near(geolocation, 1, order: 'distance')
     else
-      @listings = Listing.all
+      @listings = Listing.where(complete: false).all
       @latitude = @listings.to_a[0].latitude
       @longitude = @listings.to_a[0].longitude
     end
@@ -30,7 +30,7 @@ class PagesController < ApplicationController
       geolocation = params[:geolocation]
   end
 
-  @listings = Listing.near(geolocation, 1, order: 'distance')
+  @listings = Listing.where(complete: false).near(geolocation, 1, order: 'distance')
 
   # リスティングデータを配列にしてまとめる
   @arrlistings = @listings.to_a
